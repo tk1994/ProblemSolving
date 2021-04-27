@@ -1,0 +1,20 @@
+import java.lang.Math.*;
+
+public class Solution {
+    public int coverPoints(ArrayList<Integer> A, ArrayList<Integer> B) {
+        int total_dist = 0;
+        for(int i = 0; i < A.size() - 1; i++) {
+            Integer x_dist = Math.abs((int) A.get(i) - (int) A.get(i + 1));
+            Integer y_dist = Math.abs((int) B.get(i) - (int) B.get(i + 1));
+            Integer rem_dist = Math.abs((int) x_dist - (int) y_dist);
+            Integer hyp_dist = (x_dist > y_dist) ? y_dist : x_dist;
+            // System.out.println(x_dist);
+            // System.out.println(y_dist);
+            // System.out.println(hyp_dist);
+            // System.out.println(rem_dist);
+            // System.out.println("---");
+            total_dist += hyp_dist + rem_dist;
+        }
+        return total_dist;
+    }
+}
