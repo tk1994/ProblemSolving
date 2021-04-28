@@ -1,0 +1,42 @@
+import java.util.stream.Collectors; 
+import java.math.BigInteger;
+
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public String largestNumber(final List<Integer> A) {
+        List<Integer> B = A.stream().sorted(new sortByStringRank())
+            .collect(Collectors.toList());
+            // .stream().reduce("",
+            //     (str1, str2) -> str1.equals("0") && str2.toString().equals("0")?
+            //         "0" : str1 + str2.toString(),
+            //     (str1, str2) -> str1 + str2
+            // );
+        StringBuilder result = new StringBuilder("");
+        for(int i = 0; i < A.size(); i++) {
+            // System.out.println(result);
+            // System.out.println(B.get(i).toString());
+            if(result.toString().equals("0") && B.get(i).toString().equals("0")) {
+                result = result;
+            } else {
+                result.append(B.get(i).toString());
+            }
+            // System.out.println(result);
+            // System.out.println("---");
+        }
+        return result.toString();
+    }
+}
+
+
+class sortByStringRank implements Comparator<Integer> {
+    public int compare(Integer a, Integer b) {
+        // System.out.println(a);
+        // System.out.println(b);
+        BigInteger ab = new BigInteger(a.toString() + b.toString());
+        BigInteger ba = new BigInteger(b.toString() + a.toString());
+        // System.out.println(ab);
+        // System.out.println(ba);
+        // System.out.println("---");
+        return ba.subtract(ab).signum();
+    }
+}
