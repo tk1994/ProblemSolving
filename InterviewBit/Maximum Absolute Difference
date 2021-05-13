@@ -1,0 +1,18 @@
+import java.util.Collections;
+
+public class Solution {
+    public int maxArr(ArrayList<Integer> A) {
+        
+        ArrayList<Integer> sums = new ArrayList();
+        ArrayList<Integer> diffs = new ArrayList();
+        
+        for(int i = 0; i < A.size(); i++) {
+            sums.add(A.get(i) + i);
+            diffs.add(A.get(i) - i);
+        }
+        Integer sumsMaxDiff = Collections.max(sums) - Collections.min(sums);
+        Integer diffsMaxDiff = Collections.max(diffs) - Collections.min(diffs);
+        
+        return sumsMaxDiff > diffsMaxDiff ? sumsMaxDiff : diffsMaxDiff;
+    }
+}
